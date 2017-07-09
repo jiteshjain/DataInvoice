@@ -1,0 +1,78 @@
+﻿@model DataInvoice.Manager.Models.ExternalLoginListViewModel
+@using Microsoft.Owin.Security
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<style type="text/css">
+.facebook-button {
+  background: url('facebook-logo.png') left center no-repeat;
+  padding-left: 15px;
+}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+@{
+    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+    if (loginProviders.Count() == 0) {
+        <div>
+            <p>
+                There are no external authentication services configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                for details on setting up this ASP.NET application to support logging in via external services.
+            </p>
+        </div>
+    }
+    else {
+        using (Html.BeginForm("ExternalLogin", "Home", new { ReturnUrl = Model.ReturnUrl })) {
+            @Html.AntiForgeryToken()
+            <div class="login-options">
+                <h4>Or login with</h4>
+
+
+          
+                <div id="socialLoginList">
+                    @*<ul class="social-icons">*@
+                    @*<button type="submit" style="background-color:transparent; border-color:transparent;" id="twitter" name="provider" value="twitter">
+                <img src="../img/social/twitter.png" />
+            </button>
+            <button type="submit" style="background-color:transparent; border-color:transparent;" id="googleplus" name="provider" value="googleplus">
+                <img src="../img/social/googleplus.png" />
+            </button>*@
+                    @*<button type="submit" class="social-icon-color googleplus" style="background-color:transparent; border-color:transparent;" id="linkedin" name="provider" value="linkedin"></button>*@
+
+                    <button type="submit" style="background-color:transparent; border-color:transparent;margin-left: 93px;" id="googleplus" name="provider" value="Facebook">
+                        <img src="../Content/img/facebook.png" />
+                    </button>
+                    @*<a class="social-icon-color twitter" data-original-title="Twitter" href="javascript:;"></a>*@
+
+
+                    <button type="submit" style="background-color:transparent; border-color:transparent;margin-left: -15px;" id="Microsoft" name="provider" value="Microsoft">
+                        <img src="../Content/img/microsoft.png" style="width: 29px;" />
+                    </button>
+                    @*<a class="social-icon-color googleplus" data-original-title="Goole Plus" href="javascript:;"></a>*@
+
+
+                    <button type="submit" style="background-color:transparent; border-color:transparent;margin-left: -15px;" id="googleplus" name="provider" value="Google">
+                        <img src="../Content/img/googleplus.png" style="width: 29px;" />
+                    </button>
+
+                    <button type="submit" style="background-color:transparent; border-color:transparent;margin-left: -15px;" id="LinkedIn" name="provider" value="LinkedIn">
+                        <img src="../Content/img/linkedin.png" />
+                    </button>
+                    @*<a class="social-icon-color linkedin" data-original-title="Linkedin" href="javascript:;"></a>*@
+
+
+                    @*</ul>*@
+                    @*@foreach (AuthenticationDescription p in loginProviders)
+            {
+
+                    <button type="submit" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account"><img src="facebook.png" class="fa fa-facebook" alt="">@p.AuthenticationType</button>
+            }*@
+                    @*</ul>*@
+                </div>
+    </div>
+    <div class="create-account">
+        <p>
+            <a href="javascript:;" id="register-btn" class="uppercase">Create an account</a>
+        </p>
+    </div>
+        }
+    }
+}

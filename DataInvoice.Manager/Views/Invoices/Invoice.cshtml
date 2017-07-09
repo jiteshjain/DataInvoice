@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "CreateEdit";
+    Layout = "~/Views/Invoices/_InvoiceLayout.cshtml";
+    DataInvoice.SOLUTIONS.INVOICES.INVOICE.FORM.InvoiceCreateForm InvoiceForm = Model ?? new DataInvoice.SOLUTIONS.INVOICES.INVOICE.FORM.InvoiceCreateForm();
+    DataInvoice.SOLUTIONS.INVOICES.INVOICE.Invoice invoice = ViewBag.invoice;
+    int idInvoice = InvoiceForm.IDInvoice;
+    ViewBag.finalview = false;
+    bool editable = true;
+}
+
+@section headscripts
+{
+   
+}
+@section footscripts
+{
+
+}
+
+
+
+
+
+<div>
+    <i>Invoice info</i>
+    <br />
+
+</div>
+
+<div>
+    @if (invoice.IDInvoice > 0 && !string.IsNullOrWhiteSpace(invoice.IDFile))
+    {
+
+        <iframe src="@Url.Action("DownloadFile", new { idInvoice = invoice.IDInvoice, notfilename=true })" width="800" height="1000" align="middle"></iframe>
+
+    }
+</div>
+

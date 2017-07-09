@@ -1,0 +1,126 @@
+﻿@model DataInvoice.SOLUTIONS.GENERAL.IDENTITY.USER.Identity.ApplicationUser
+@{
+    ViewBag.Title = "AccountManager";
+}
+
+
+
+<div class="row">
+
+    <div class="col-md-8">
+
+
+        <div class="portlet light">
+            <div class="portlet-title no-border">
+                <h4>modification de vos <span class="semi-bold">informations</span></h4>
+            </div>
+            <div class="portlet-body no-border">
+                <div class="row-fluid">
+                    <div class="span8">
+                        <p>La gestion de vos informations</p>
+                        <form method="post" action="@Url.Action("AccountManager")" name="userform">
+
+                            <div class="form-group">
+                                <label class="upper" for="name">Nom d'utilisateur</label>
+                                <input class="form-control" id="UserName" type="text" value="@Model.UserName" disabled>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="upper" for="name">Pseudo</label>
+                                <input class="form-control required" name="Pseudo" id="Pseudo" placeholder="Nom et prenom" aria-required="true" type="text" value="@Model.Pseudo">
+                            </div>
+
+                            <div class="form-group">
+                                <button class="m-t-35 btn btn-primary" type="submit">Enregistrer les informations</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="portlet light">
+            <div class="portlet-title no-border">
+                <h4>Informations de <span class="semi-bold">sécurité</span></h4>
+            </div>
+            <div class="portlet-body no-border">
+                <div class="row-fluid">
+                    <div class="span8">
+                        <p>Ces informations vous permettrons de retrouver votre mot de passe en cas de perte.</p>
+                        <form class="form-inline" method="post" action="@Url.Action("AccountManager_SecurityMail")" name="mailform">
+                            <div class="form-group">
+                                <label for="exampleInputName2" class="text-left">Mail de sécurité</label>
+                                <input class="form-control" id="SecurityMail" name="SecurityMail" placeholder="exemple@entreprise.fr" type="email" value="@Model.SecurityMail">
+                            </div>
+                            <div class="form-group">
+                                <button class="m-t-35 btn btn-primary" type="submit">Modifier le mail</button>
+                            </div>
+                        </form>
+
+
+                        <form class="form-inline" method="post" action="@Url.Action("AccountManager_SecurityPhone")" name="phoneform">
+                            <div class="form-group">
+                                <label for="exampleInputName2" class="text-left">Téléphone mobile de sécurité</label>
+                                <input class="form-control" id="SecurityPhone" name="SecurityPhone" placeholder="06" type="text" value="@Model.SecurityPhone">
+                            </div>
+                            <div class="form-group">
+                                <button class="m-t-35 btn btn-primary" type="submit">Modifier le Numéro</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+    <div class="col-md-4">
+        <div class="portlet light">
+            <div class="portlet-title no-border">
+                <h4>Changement de votre <span class="semi-bold">mot de passe</span></h4>
+            </div>
+            <div class="grid-body no-border">
+                <div class="row-fluid">
+                    <p>Vous devez connaitre votre mot de passe actuel</p>
+                    <br>
+                    <form method="post" action="@Url.Action("AccountManager_Password")" name="passform">
+
+                        <label>
+                            <i>Ancien mot de passe</i>
+                            <input class="form-control" id="OldPassword" name="OldPassword" type="password" placeholder="">
+                        </label>
+                        <label>
+                            <i>Nouveau Mot de passe</i>
+                            <input class="form-control" id="Password" name="Password" type="password" placeholder="">
+                        </label>
+                        <label>
+                            <i>Confirmation Nouveau Mot de passe</i>
+                            <input class="form-control" id="ConfirmPassword" name="ConfirmPassword" type="password" placeholder="">
+                        </label>
+                        <br /><br />
+                        <button class="btn btn-primary btn-block" type="submit">Changer de mot de passe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+

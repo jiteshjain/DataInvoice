@@ -1,0 +1,215 @@
+﻿@model DataInvoice.SOLUTIONS.INVOICES.INVOICE.Invoice
+@{
+    // Il s'agit d'un model de facture, utilisable
+
+
+    Layout = null;
+
+    string baseurl = "https://static.datainvoice.com";
+
+    string invoicelogo = Model.InvoiceLogo; //"http://www2.datainvoice.com/manager/assets/img/invoicelogo.png";
+    DataInvoice.SOLUTIONS.INVOICES.INVOICE.Invoice invoice = Model;
+
+    DataInvoice.SOLUTIONS.INVOICES.CONTACT.FORM.AddressForm selleraddressform = new DataInvoice.SOLUTIONS.INVOICES.CONTACT.FORM.AddressForm();
+    selleraddressform.FromPo(invoice.SellerAddress);
+
+    DataInvoice.SOLUTIONS.INVOICES.CONTACT.FORM.AddressForm buyeraddressform = new DataInvoice.SOLUTIONS.INVOICES.CONTACT.FORM.AddressForm();
+    buyeraddressform.FromPo(invoice.BuyerAddress);
+
+    bool finalview = true; // pour imprimer sans les elements de modifications
+    if (ViewBag.finalview != null) { finalview = ViewBag.finalview; }
+
+    string montant = string.Empty;
+    double Subtotal = 0;
+
+}
+
+
+@DataInvoice.COMPONENTS.WEB.MVC.ViewTools.RawHtml("<html>")
+@if (finalview)
+{
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta charset="utf-8" />
+    <title>@Model.RefInvoice | DataInvoice.com</title>
+
+    <link href="@baseurl/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="@baseurl/plugins/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+    <link href="@baseurl/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
+
+    <link href="@baseurl/css/webarch.css" rel="stylesheet" type="text/css" />
+
+</head>
+    @DataInvoice.COMPONENTS.WEB.MVC.ViewTools.RawHtml("<body class='horizontal-menu' style='background-color: white;'>")
+
+
+    @DataInvoice.COMPONENTS.WEB.MVC.ViewTools.RawHtml("<div class='content' style='background-color: white; padding: 20px 20px 20px 20px; '>")
+    @DataInvoice.COMPONENTS.WEB.MVC.ViewTools.RawHtml("<div style='background-color:white; width:1200px;'>")
+
+
+
+
+
+
+}
+
+        <!-- INVOICE TEMPLATE -->
+
+<div id="contentInvoicedatahtml">
+
+    <br>
+    <div class="pull-left">
+        @if (string.IsNullOrWhiteSpace(invoicelogo) && !finalview)
+        {
+            <a id="addlogo" href="javascript:doModal('@System.Web.VirtualPathUtility.ToAbsolute("~/Invoices/ModifierLogo?idInvoice=" + @invoice.IDInvoice)');"  style="color:red;"> <i class="fa fa-plus"></i>Ajouter un logo</a>
+        }
+        else if (!string.IsNullOrWhiteSpace(invoicelogo))
+        {
+            <img id="addlogo" onclick="doModal('@System.Web.VirtualPathUtility.ToAbsolute("~/Invoices/ModifierLogo?idInvoice=" + @invoice.IDInvoice)');" src="@invoicelogo" class="invoice-logo" alt="" style="max-height:55px;"><br /><br />
+        }
+
+        <address>
+            <strong class="editablefieldinvoice" id="SellerAddress_Identity">@selleraddressform.Identity</strong><br>
+            <span class="editablefieldinvoice" id="SellerAddress_Adress1">@selleraddressform.Adress1 </span><br />
+            <span class="editablefieldinvoice" id="SellerAddress_Postcode">@selleraddressform.Postcode</span> <span id="SellerAddress_City">@selleraddressform.City</span> <span id="SellerAddress_Country">@selleraddressform.Country</span> <br />
+            <abbr title="Phone">P:</abbr> <span class="editablefieldinvoice" id="SellerAddress_ContactPhone"> @selleraddressform.ContactPhone</span><br />
+            <abbr title="Email">M:</abbr> <span class="editablefieldinvoice" id="SellerAddress_ContactMail"> @selleraddressform.ContactMail</span>
+        </address>
+    </div>
+    <div class="pull-right">
+        <h2>Facture</h2>
+    </div>
+
+
+    <div class="clearfix"></div>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-9">
+            <h4 class="semi-bold editablefieldinvoice"  id="BuyerAddress_Identity" style="width:400px;">@buyeraddressform.Identity</h4>
+            <address>
+                @*<strong id="edit_buyer_companyname">@buyeraddressform.Compagny</strong><br>*@
+                <span class="editablefieldinvoice" id="BuyerAddress_Adress1">@buyeraddressform.Adress1 </span><br />
+                <span class="editablefieldinvoice" id="BuyerAddress_Postcode">@buyeraddressform.Postcode</span> <span id="BuyerAddress_City">@buyeraddressform.City</span> <span class="editablefieldinvoice" id="BuyerAddress_Country">@buyeraddressform.Country</span> <br />
+                <abbr title="Phone">P:</abbr> <span class="editablefieldinvoice" id="BuyerAddress_ContactPhone"> @buyeraddressform.ContactPhone</span><br />
+                <abbr title="Email">M:</abbr> <span class="editablefieldinvoice" id="BuyerAddress_ContactMail"> @buyeraddressform.ContactMail</span>
+            </address>
+        </div>
+        <div class="col-md-3">
+            <br>
+            <div>
+                <div class="pull-left">  NO : </div>
+                <div class="pull-right"><span class="editablefieldinvoice" id="Invoice_RefInvoice">@invoice.RefInvoice</span></div>
+                <div class="clearfix"></div>
+            </div>
+            <div>
+                <div class="pull-left"> DATE : </div>
+                <div class="pull-right"><span class="editablefieldinvoice" id="Invoice_DateInvoice">@if (invoice.DateInvoice.HasValue)
+                { @DataInvoice.COMPONENTS.WEB.MVC.ViewTools.RawHtml(invoice.DateInvoice.Value.ToString("dd/MM/yyyy")) }</span></div>
+                <div class="clearfix"></div>
+            </div>
+            <br>
+
+
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width:60px"> </th>
+                <th style="width:60px" class="unseen text-center">QUANTITE</th>
+                <th class="text-left">DESIGNATION</th>
+                <th style="width:140px" class="text-right">UNITAIRE</th>
+                <th style="width:90px" class="text-right">TOTAL</th>
+            </tr>
+        </thead>
+        <tbody id="lines">
+
+
+
+
+
+
+            @foreach (DataInvoice.SOLUTIONS.INVOICES.INVOICE.InvoiceLine itemline in invoice.Lines)
+            {
+                Subtotal += (itemline.LineAmount * itemline.LineQuantity);
+                montant = "€ " + (itemline.LineAmount * itemline.LineQuantity).ToString();
+                <tr id="line@(itemline.IDLine)">
+                    <td>
+                        @if (!finalview)     {      <a class="removeLine" id="@itemline.IDLine" href="#" style="color:red;"> <i class="fa fa-remove"></i></a>    }
+                    </td>
+                    <td class="unseen text-center"><a href="#" id="Lines|@(itemline.IDLine)_LineQuantity" class="LineQuantity">@itemline.LineQuantity</a>   </td>
+                    <td><a href="#" id="Lines|@(itemline.IDLine)_LineLabel" class="LineLabel">@itemline.LineLabel</a></td>
+                    <td class="text-right">€ <a href="#" id="Lines|@(itemline.IDLine)_LineAmount" class="LineAmount">@itemline.LineAmount</a> </td>
+                    <td class="text-right" id="Lines_@(itemline.IDLine)_LineTotalAmount"> @montant </td>
+                </tr>
+            }
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td style="border: 0 none;"></td>
+                <td colspan="2" rowspan="4">
+                    @if (!finalview)
+                    { <a id="addLine" href="#" style="color:red;"> <i class="fa fa-plus"></i> Ajouter une nouvelle ligne</a>}
+                    <!--
+                    <h4 class="semi-bold">terms and conditions</h4>
+                    <p>Thank you for your business. We do expect payment within 21 days, so please process this invoice within that time. There will be a 1.5% interest charge per month on late invoices.</p>
+                    <h5 class="text-right semi-bold">Thank you for your business</h5>-->
+                </td>
+                <td class="text-right"><strong>Sous Total</strong></td>
+                <td class="text-right" id="SubTotal">€ @Subtotal.ToString()</td>
+            </tr>
+            @*<tr>
+                <td style="border: 0 none;"></td>
+                <td class="text-right no-border"><strong>Frais de livraison</strong></td>
+                <td class="text-right">€ 0.00</td>
+            </tr>*@
+            <tr>
+                <td style="border: 0 none;"></td>
+                <td class="text-right no-border"><strong>Taxes (TVA)</strong></td>
+                <td class="text-right" id="TotalTax">€ @Model.Lines.CalcTotalTax()</td>
+            </tr>
+            <tr>
+                <td style="border: 0 none;"></td>
+                <td class="text-right no-border"><div class="well well-small green"><strong>Total</strong></div></td>
+                <td class="text-right"><strong id="TotalAmount">@Model.Lines.CalcTotalAmount()</strong></td>
+            </tr>
+        </tfoot>
+    </table>
+    <br>
+    <br>
+    <h5 class="text-right text-black">By DataInvoice</h5>
+    <h5 class="text-right semi-bold text-black">...</h5>
+    <br>
+    <br>
+
+
+
+
+
+</div>
+        <!-- END INVOICE TEMPLATE -->
+
+
+
+ 
+
+
+@if (finalview)
+{
+    @DataInvoice.COMPONENTS.WEB.MVC.ViewTools.RawHtml("</div>")
+    @DataInvoice.COMPONENTS.WEB.MVC.ViewTools.RawHtml("</div>")
+    
+    @*
+    <script src="@baseurl/plugins/jquery/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <script src="@baseurl/plugins/bootstrapv3/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="@baseurl/plugins/jquery-block-ui/jqueryblockui.min.js" type="text/javascript"></script>
+    *@
+    
+    @DataInvoice.COMPONENTS.WEB.MVC.ViewTools.RawHtml("</body>")
+    @DataInvoice.COMPONENTS.WEB.MVC.ViewTools.RawHtml("</html>")
+
+}
+

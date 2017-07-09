@@ -1,0 +1,159 @@
+﻿
+
+
+
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta charset="utf-8" />
+    <title>49811 | DataInvoice.com</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://static.datainvoice.com/plugins/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://static.datainvoice.com/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
+
+    <link href="https://static.datainvoice.com/css/webarch.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body class='horizontal-menu' style='background-color: white;'><div class='content' style='background-color: white; padding: 20px 20px 20px 20px; '><div style='background-color:white; width:1200px;'>
+        <!-- INVOICE TEMPLATE -->
+
+<div id="contentInvoicedatahtml">
+
+    <br>
+    <div class="pull-left">
+            <img id="addlogo" onclick="doModal('/Invoices/ModifierLogo?idInvoice=11');" src="https://static.nuegy.net/nuegy/images/logo.png" class="invoice-logo" alt="" style="max-height:55px;"><br /><br />
+
+        <address>
+            <strong class="editablefieldinvoice" id="SellerAddress_Compagny">hghgf,fgh,</strong><br>
+            <span class="editablefieldinvoice" id="SellerAddress_Adress1"> </span><br />
+            <span class="editablefieldinvoice" id="SellerAddress_Postcode"></span> <span id="SellerAddress_City"></span> <span id="SellerAddress_Country"></span> <br />
+            <abbr title="Phone">P:</abbr> <span class="editablefieldinvoice" id="SellerAddress_ContactPhone"> </span><br />
+            <abbr title="Email">M:</abbr> <span class="editablefieldinvoice" id="SellerAddress_ContactMail"> </span>
+        </address>
+    </div>
+    <div class="pull-right">
+        <h2>Facture</h2>
+    </div>
+
+
+    <div class="clearfix"></div>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-9">
+            <h4 class="semi-bold editablefieldinvoice"  id="BuyerAddress_Compagny" style="width:400px;"></h4>
+            <address>
+                
+                <span class="editablefieldinvoice" id="BuyerAddress_Adress1"> </span><br />
+                <span class="editablefieldinvoice" id="BuyerAddress_Postcode"></span> <span id="BuyerAddress_City"></span> <span class="editablefieldinvoice" id="BuyerAddress_Country"></span> <br />
+                <abbr title="Phone">P:</abbr> <span class="editablefieldinvoice" id="BuyerAddress_ContactPhone"> </span><br />
+                <abbr title="Email">M:</abbr> <span class="editablefieldinvoice" id="BuyerAddress_ContactMail"> </span>
+            </address>
+        </div>
+        <div class="col-md-3">
+            <br>
+            <div>
+                <div class="pull-left">  NO : </div>
+                <div class="pull-right"><span class="editablefieldinvoice" id="Invoice_RefInvoice">49811</span></div>
+                <div class="clearfix"></div>
+            </div>
+            <div>
+                <div class="pull-left"> DATE : </div>
+                <div class="pull-right"><span class="editablefieldinvoice" id="Invoice_DateInvoice">23/12/2016</span></div>
+                <div class="clearfix"></div>
+            </div>
+            <br>
+
+
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width:60px"> </th>
+                <th style="width:60px" class="unseen text-center">QUANTITE</th>
+                <th class="text-left">DESIGNATION</th>
+                <th style="width:140px" class="text-right">UNITAIRE</th>
+                <th style="width:90px" class="text-right">TOTAL</th>
+            </tr>
+        </thead>
+        <tbody id="lines">
+
+
+
+
+
+
+                <tr id="line55">
+                    <td>
+                    </td>
+                    <td class="unseen text-center"><a href="#" id="Lines|55_LineQuantity" class="LineQuantity">10</a>   </td>
+                    <td><a href="#" id="Lines|55_LineLabel" class="LineLabel">facturation</a></td>
+                    <td class="text-right">€ <a href="#" id="Lines|55_LineAmount" class="LineAmount">100</a> </td>
+                    <td class="text-right" id="Lines_55_LineTotalAmount"> € 1000 </td>
+                </tr>
+                <tr id="line56">
+                    <td>
+                    </td>
+                    <td class="unseen text-center"><a href="#" id="Lines|56_LineQuantity" class="LineQuantity">6</a>   </td>
+                    <td><a href="#" id="Lines|56_LineLabel" class="LineLabel">yjtyjytjytjytjffff</a></td>
+                    <td class="text-right">€ <a href="#" id="Lines|56_LineAmount" class="LineAmount">1</a> </td>
+                    <td class="text-right" id="Lines_56_LineTotalAmount"> € 6 </td>
+                </tr>
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td style="border: 0 none;"></td>
+                <td colspan="2" rowspan="4">
+                    <!--
+                    <h4 class="semi-bold">terms and conditions</h4>
+                    <p>Thank you for your business. We do expect payment within 21 days, so please process this invoice within that time. There will be a 1.5% interest charge per month on late invoices.</p>
+                    <h5 class="text-right semi-bold">Thank you for your business</h5>-->
+                </td>
+                <td class="text-right"><strong>Sous Total</strong></td>
+                <td class="text-right" id="SubTotal">€ 1006</td>
+            </tr>
+            
+            <tr>
+                <td style="border: 0 none;"></td>
+                <td class="text-right no-border"><strong>Taxes (TVA)</strong></td>
+                <td class="text-right" id="TotalTax">€ 201,2</td>
+            </tr>
+            <tr>
+                <td style="border: 0 none;"></td>
+                <td class="text-right no-border"><div class="well well-small green"><strong>Total</strong></div></td>
+                <td class="text-right"><strong id="TotalAmount">1207,2</strong></td>
+            </tr>
+        </tfoot>
+    </table>
+    <br>
+    <br>
+    <h5 class="text-right text-black">By DataInvoice</h5>
+    <h5 class="text-right semi-bold text-black">...</h5>
+    <br>
+    <br>
+
+
+
+
+
+</div>
+        <!-- END INVOICE TEMPLATE -->
+
+
+
+ 
+
+
+</div></div>
+<!-- Visual Studio Browser Link -->
+<script type="application/json" id="__browserLink_initializationData">
+    {"appName":"Firefox","requestId":"f28576f532054098abb299cc3e22a0a4"}
+</script>
+<script type="text/javascript" src="http://localhost:28014/0739f9e7899a419d9cd40bf2383d1952/browserLink" async="async"></script>
+<!-- End Browser Link -->
+
+</body></html>

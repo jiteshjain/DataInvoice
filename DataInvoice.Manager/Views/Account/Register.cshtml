@@ -1,0 +1,50 @@
+﻿@model DataInvoice.GENERAL.IDENTITY.USER.FORM.CreateUserForm
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<div class="container">
+    <div class="row login-container column-seperation" style="width:70%">
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", @style = "width:70%" }))
+        {
+            @Html.AntiForgeryToken()
+            <h4>Create a new account.</h4>
+            <hr />
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+                <div class="row">
+                <div class="form-group col-md-10">
+                    <label class="form-label">Mail</label>
+                    <input class="form-control" id="Mail" name="Mail" type="email" required>
+                </div>
+            </div>
+    <div class="row">
+        <div class="form-group col-md-10">
+            <label class="form-label">Pseudo</label>
+            <input class="form-control" id="Pseudo" name="Pseudo" required>
+        </div>
+    </div>
+                <div class="row">
+                <div class="form-group col-md-10">
+                    <label class="form-label">Password</label>
+                    <input class="form-control" id="Password" name="Password" type="password" required>
+                </div>
+            </div>
+                    <div class="row">
+                <div class="form-group col-md-10">
+                    <label class="form-label">Confirm Password</label>
+                    <input class="form-control" id="ConfirmPassword" name="ConfirmPassword" type="password" required>
+                </div>
+            </div>
+                       <div class="row">
+                <div class="col-md-10">
+                    <button class="btn btn-primary btn-cons pull-right" type="submit">Register</button>
+                </div>
+            </div>
+        }
+        </div></div>
+        @*@section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }*@

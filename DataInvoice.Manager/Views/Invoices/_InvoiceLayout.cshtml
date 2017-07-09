@@ -1,0 +1,133 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    DataInvoice.SOLUTIONS.INVOICES.INVOICE.Invoice invoice = ViewBag.invoice;
+    int IDInvoice = invoice.IDInvoice;
+    ViewBag.Title = "Invoice " + invoice.IDInvoice;
+
+
+
+    string actionName = ViewContext.Controller.ControllerContext.RouteData.Values["action"].ToString();
+    
+
+    
+}
+@section headscripts
+{
+
+    @RenderSection("headscripts", false)
+
+}
+@section footscripts
+{
+
+    @RenderSection("footscripts", false)
+
+}
+
+
+@*<div>
+    @DataInvoice.SOLUTIONS.INVOICES.INVOICE.HELPER.InvoiceTimeLineHelpers.ShowInvoiceSteps(invoice)
+</div>*@
+
+
+
+<div class="portlet light bordered">
+    <div class="portlet-title  tabbable-line">
+        @*<div class="caption">
+                <i class="icon-pin font-yellow-lemon"></i>
+                <span class="caption-subject bold font-yellow-lemon uppercase"> Information </span>
+                <span class="caption-helper">more samples...</span>
+            </div>*@
+
+        <ul class="nav nav-tabs nav-tabs-lg" style="float: left;">
+                @if (invoice.IDInvoice > 0)
+                {
+            <li class="@NGLib.COMPONENTS.WEB.Tools.sayactive(actionName,"Invoice")">
+                <a href="@Url.Action("Invoice", "Invoices", new { IDInvoice = IDInvoice })"> Informations Générales </a>
+            </li>
+                }
+                @if (invoice.InvoiceState == DataInvoice.SOLUTIONS.INVOICES.INVOICE.ENUM.InvoiceStateEnum.PREPARE)
+             {
+            <li class="@NGLib.COMPONENTS.WEB.Tools.sayactive(actionName,"InvoiceEdition")">
+                <a href="@Url.Action("InvoiceEdition", "Invoices", new { IDInvoice = IDInvoice })"> Edition de la facture </a>
+            </li>
+                }
+        </ul>
+
+
+        <div class="actions">
+
+
+                @DataInvoice.SOLUTIONS.INVOICES.INVOICE.HELPER.InvoiceBtnHelpers.ShowBtnNextStep(this.Html,invoice)
+                @DataInvoice.SOLUTIONS.INVOICES.INVOICE.HELPER.InvoiceBtnHelpers.ShowBtnDownload(this.Html, invoice)
+                @DataInvoice.SOLUTIONS.INVOICES.INVOICE.HELPER.InvoiceBtnHelpers.ShowBtnActions(this.Html, invoice)
+
+
+        </div>
+
+
+    </div>
+    <div class="portlet-body no-border">
+
+
+
+        <div class="row">
+            <div class="col-md-10">
+
+                <form method="post" action="@Url.Action("InvoiceCreateEdit", "Invoices")">
+                    <input type="hidden" name="IDInvoice" value="@invoice.IDInvoice" />
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <label class="upper">@DataInvoice.Resources.Resources.title</label>
+                            <input class="form-control" name="InvoiceTitle" value="@invoice.InvoiceTitle" type="text" placeholder="Titre de la facture (facultatif)">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">Enregistrer les informations</button>
+
+                    </div>
+                    
+
+                    <br /><br />
+                    
+                </form>
+            </div>
+
+
+
+            <div class="col-md-2">
+
+
+                @*@if (invoice.IDInvoice > 0 && string.IsNullOrEmpty(invoice.IDFile))
+                {
+
+                    using (Html.BeginForm("UploadFile", "Invoices", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <input type="hidden" name="IdInvoice" value="@invoice.IDInvoice" />
+
+
+                        <label class="upper" for="LabelFile">@DataInvoice.Resources.Resources.addFile</label>
+
+                        <input style="padding: 0px 12px !important;" class="form-control" type="file" name="FileUpload1" accept="application/pdf" required>
+
+                        <br />
+                        <button class="btn btn-block btn-primary" type="submit">@DataInvoice.Resources.Resources.uploadFile</button>
+
+
+
+                    }
+                }*@
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+@RenderBody()
+
+
+

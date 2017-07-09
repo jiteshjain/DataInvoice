@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Campagne";
+    Layout = "~/Views/Campaigns/_CampaignLayout.cshtml";
+    DataInvoice.SOLUTIONS.INVOICES.CAMPAIGN.Campaign Form = Model ?? new DataInvoice.SOLUTIONS.INVOICES.CAMPAIGN.Campaign();
+}
+
+
+
+
+
+
+
+    <div class="portlet light">
+        <div class="portlet-body">
+
+
+
+
+
+
+            <form method="post" action="">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="upper">Titre</label>
+                        <input class="form-control" name="Title" value="@Form.Title" type="text">
+                    </div>
+
+
+                </div>
+                <input type="hidden" name="IDCampaign" value="@Form.IDCampaign" />
+
+                <br /><br />
+                <button class="btn btn-primary btn-block" type="submit">Valider</button>
+            </form>
+
+
+</div>
+    </div>
+
+
+
+

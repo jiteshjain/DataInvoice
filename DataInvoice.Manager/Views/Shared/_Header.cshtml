@@ -1,0 +1,73 @@
+﻿@{
+    Layout = null;
+
+}
+
+
+        <!-- BEGIN HEADER -->
+<div class="page-header light navbar navbar-fixed-top">
+    <!-- BEGIN HEADER INNER -->
+    <div class="page-header-inner ">
+        <!-- BEGIN LOGO -->
+        <div class="page-logo">
+            <a href="@Url.Action("Index","Home")">
+                <img src="https://static.datainvoice.com/datainvoice.png" style="height:20px;" alt="logo" class="logo-default" />
+            </a>
+            <div class="menu-toggler sidebar-toggler">
+                <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+            </div>
+        </div>
+        <!-- END LOGO -->
+        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+         <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a> 
+        <!-- END RESPONSIVE MENU TOGGLER -->
+        <!-- BEGIN PAGE ACTIONS -->
+        <!-- DOC: Remove "hide" class to enable the page header actions -->
+        <div class="page-actions">
+            <div class="btn-group">
+                @*<a href="@Url.Action("Invoice", "Invoices", new { idInvoice = -2 })" class="btn red-haze btn-sm">
+                    <i class="fa fa-plus"></i>
+                    <span class="hidden-sm hidden-xs">Nouvelle Facture&nbsp;</span>
+                </a>*@
+                <button type="button" class="btn red-haze btn-sm" onclick="doModal('@System.Web.VirtualPathUtility.ToAbsolute("~/Campaigns/ModalList")');">
+                    <i class="fa fa-plus"></i> @DataInvoice.Resources.Resources.addInvoice
+                </button>
+            </div>
+           
+        
+        </div>
+        <!-- END PAGE ACTIONS -->
+        <!-- BEGIN PAGE TOP -->
+        <div class="page-top">
+
+            @Html.Partial("_HeaderRight")
+
+        </div>
+        <!-- END PAGE TOP -->
+    </div>
+    <!-- END HEADER INNER -->
+    
+</div>
+ <!-- END HEADER -->
+<!-- Modal creation facture -->
+<div class="modal fade" id="genericModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" id="contentModal">          
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function doModal(url) {
+        html = '';    
+        $.ajax({
+             url: url,
+            success: function (data) {
+                html += data;
+                $("#contentModal").html(html);
+                $("#genericModal").modal();
+            }
+        });
+
+      
+    }
+</script>

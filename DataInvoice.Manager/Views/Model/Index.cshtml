@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    DataInvoice.Core.SOLUTIONS.INVOICES.DOCMODEL.FORM.DocModelApiPoco docModel = ViewBag.docModel ?? new DataInvoice.Core.SOLUTIONS.INVOICES.DOCMODEL.FORM.DocModelApiPoco();
+    List<DataInvoice.SOLUTIONS.GENERAL.ACCOUNT.Account> accounts = ViewBag.Accounts ?? new List<DataInvoice.SOLUTIONS.GENERAL.ACCOUNT.Account>();
+    List<DataInvoice.SOLUTIONS.INVOICES.CAMPAIGN.Campaign> campaigns = ViewBag.campaigns ?? new List<DataInvoice.SOLUTIONS.INVOICES.CAMPAIGN.Campaign>();
+    }
+
+<div class="grid simple">
+    <div class="grid-title no-border">
+        <h4>@DataInvoice.Resources.Resources.search</h4>
+    </div>
+    <div class="grid-body no-border">
+        <div class="row">
+            <form method="post" action="@Url.Action("Index", "Model")">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="upper">@DataInvoice.Resources.Resources.title</label>
+                        <input class="form-control" name="Title"  value="@docModel.Title" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label class="upper">@DataInvoice.Resources.Resources.account</label>
+                       <select class="form-control" name="IDAccount">
+                            @foreach (DataInvoice.SOLUTIONS.GENERAL.ACCOUNT.Account account in accounts)
+                            {   <option value="@account.IDAccount" > @account.AccountName </option>}                           
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="upper">@DataInvoice.Resources.Resources.campaign</label>
+                        <select class="form-control" name="IDCampaign">
+                            @foreach (DataInvoice.SOLUTIONS.INVOICES.CAMPAIGN.Campaign campaign in campaigns)
+                            {
+                                <option value="@campaign.IDCampaign"> @campaign.Title </option>}
+                        </select>
+                    </div>
+                </div>
+
+                @*<input type="hidden" name="ActiveSearch" value="true" />*@
+
+                <br /><br />
+                <button class="btn btn-primary btn-block" type="submit">@DataInvoice.Resources.Resources.search</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="grid simple " style="padding-top:100px;">
+    <div class="grid-title no-border">
+        <h4>
+            @DataInvoice.Resources.Resources.listModel
+            <i>&nbsp;&nbsp;</i><a class="btn btn-mini btn-info" href="@Url.Action("CreateEdit", "Model", new { IDModel = 0 })"><i class="fa fa-plus"></i> Ajouter un nouveau modele</a>
+        </h4>
+
+    </div>
+    <div class="grid-body no-border">
+
+        <table class="table no-more-tables table-hover">
+            <thead>
+                <tr>
+                    <th style="width:9%">@DataInvoice.Resources.Resources.title</th>
+                   <th style="width:22%">@DataInvoice.Resources.Resources.account</th>
+                    <th style="width:22%">@DataInvoice.Resources.Resources.campaign</th>
+                    <th style="width:20%">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    foreach (DataInvoice.SOLUTIONS.INVOICES.DOCMODEL.DocModel doc in Model)
+                    {
+                        <tr>
+
+                            <!--ROW CONTACT-->
+                            <td class="v-align-middle">@doc.Title</td>
+                            <td class="v-align-middle"> @(doc.IDAccount>0? accounts.FirstOrDefault(a => a.IDAccount == doc.IDAccount).AccountName:"") </td>
+                           <td class="v-align-middle">@(doc.IDCampaign.HasValue && doc.IDCampaign>0 ? campaigns.FirstOrDefault(camp => camp.IDCampaign == doc.IDCampaign).Title:"")</td>
+                            <td>
+                                @*<a href="@Url.Action("ManageIndex", "Invoice", new { IDContact = @invoice.IDInvoice })" class="btn btn-white btn-xs btn-mini" title="plus d'informations'"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;</a>*@
+                                <a href="@Url.Action("CreateEdit", "Model", new { IDModel = @doc.IDModel })" clas="btn btn-white btn-xs btn-mini"><i class="fa fa-cubes" aria-hidden="true"> @DataInvoice.Resources.Resources.edit </i>&nbsp;</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+        <br />
+        <br />
+
+    </div>
+</div>
+

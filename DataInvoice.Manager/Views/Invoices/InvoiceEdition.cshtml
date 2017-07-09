@@ -1,0 +1,145 @@
+﻿@{
+    ViewBag.Title = "CreateEdit";
+    Layout = "~/Views/Invoices/_InvoiceLayout.cshtml";
+     DataInvoice.SOLUTIONS.INVOICES.INVOICE.Invoice invoice = ViewBag.invoice;
+     int idInvoice = invoice.IDInvoice;
+    ViewBag.finalview = false;
+    bool editable = true;
+}
+
+@section headscripts
+{
+    <link href="//static.datainvoice.com/plugins/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" type="text/css" />
+}
+@section footscripts
+{
+    <script src="//static.datainvoice.com/plugins/bootstrap3-editable/js/bootstrap-editable.min.js" type="text/javascript"></script>
+
+
+
+    <script>
+    //$.fn.editable.defaults.mode = 'inline';
+
+    function   initEditableLine(){
+        $('.LineQuantity').editable({pk:@idInvoice,
+            //type:"number",
+            url:  'UpdateAjaxInvoice',
+            success: function (data) {
+                var UpdtIdline = data.LastUpdtline.IDLine;
+                var subIdprefix = "Lines_"+UpdtIdline+"_"; //LineTotalAmount
+                $('#'+subIdprefix+'LineTotalAmount').html(data.LastUpdtline.CurrencySymbol+" "+  data.LastUpdtline.TotalLineAmount); // 
+                $('#SubTotal').html(data.CurrencySymbol+" "+data.SubTotal);
+                $('#TotalTax').html(data.CurrencySymbol+" "+data.TotalTax);
+                $('#TotalAmount').html(data.CurrencySymbol+" "+data.TotalAmount);
+            }
+        });
+
+
+        $('.LineLabel').editable({pk:@idInvoice, url: 'UpdateAjaxInvoice' });
+
+
+        $('.LineAmount').editable({
+            pk:@idInvoice,
+                //type:"number",
+                url:  'UpdateAjaxInvoice',
+                success: function (data) {
+                    var UpdtIdline = data.LastUpdtline.IDLine;
+                    var subIdprefix = "Lines_"+UpdtIdline+"_"; //LineTotalAmount
+                    $('#'+subIdprefix+'LineTotalAmount').html(data.LastUpdtline.CurrencySymbol+" "+  data.LastUpdtline.TotalLineAmount); // data.LastUpdtline.CurrencySymbol+" "+ 
+                    $('#SubTotal').html(data.CurrencySymbol+" "+data.SubTotal);
+                    $('#TotalTax').html(data.CurrencySymbol+" "+data.TotalTax);
+                    $('#TotalAmount').html(data.CurrencySymbol+" "+data.TotalAmount);
+                } });
+
+            $('.removeLine').click(function () {
+                var lineNo = $(this).attr('id');
+                $.ajax({ cache: false, async: true, type: 'POST', data: { idLine: lineNo}, url: 'DeleteLine',
+                    success: function (data) {
+                        var line = $("#line" + lineNo);
+                        line.remove();
+                        $('#Subtotal').html(data);
+                        $('#total').html(data);
+                    } });
+                return false;
+            });
+        }
+
+
+        $('#addLine').click(function () {
+            $.ajax({ cache: false, async: true, type: 'POST', data: { idInvoice: @idInvoice}, url: 'AddLine',
+            success: function (data) {
+                $('#lines').append('<tr id="line' + data + '">  <td ><a class="removeLine" id="' + data + '" href="#" style="color:red;"> <i class="fa fa-remove"></i></a></td> <td class="unseen text-center"><a href="#"  id="Lines|' + data + '_LineQuantity" class="LineQuantity">0 </a>   </td> <td><a href="#"  id="Lines|' + data + '_LineLabel" class="LineLabel">Empty </a></td>  <td class="text-right">€ <a href="#"  id="Lines|' + data + '_LineAmount" class="LineAmount">0 </a> </td> <td class="text-right" id="Lines_' + data +'_LineTotalAmount"> € 0  </td> </tr>');
+                initEditableLine();
+
+
+            } });
+        return false;
+    });
+
+
+        $('.editablefieldinvoice').editable({pk:@idInvoice, url: 'UpdateAjaxInvoice'  });
+    @*$('#Invoice_DateInvoice').editable({type: 'date', pk:@idInvoice, url: 'UpdateInvoice'    });
+        $('#SellerAddress_Compagny').editable({ pk:@idInvoice, url: 'UpdateInvoice'  });
+        $('#SellerAddress_Adress1').editable({ pk:@idInvoice, url: 'UpdateInvoice'  });
+
+        $('#SellerAddress_Postcode').editable({pk:@idInvoice, url: 'UpdateInvoice'  });
+        $('#SellerAddress_City').editable({pk:@idInvoice, url: 'UpdateInvoice'  });
+        $('#SellerAddress_Country').editable({pk:@idInvoice, url: 'UpdateInvoice'  });
+        $('#SellerAddress_ContactPhone').editable({pk:@idInvoice, url: 'UpdateInvoice'  });
+        $('#SellerAddress_ContactMail').editable({pk:@idInvoice, url: 'UpdateInvoice'  });
+
+        $('#BuyerAddress_Compagny').editable({pk:@idInvoice, url: 'UpdateInvoice'  });
+        $('#BuyerAddress_Adress1').editable({pk:@idInvoice, url: 'UpdateInvoice'  });
+
+        $('#BuyerAddress_Postcode').editable({pk:@idInvoice, url: 'UpdateInvoice'  });
+        $('#BuyerAddress_City').editable({pk:@idInvoice, url: 'UpdateInvoice'  });
+        $('#BuyerAddress_Country').editable({pk:@idInvoice, url: 'UpdateInvoice'  });
+        $('#BuyerAddress_ContactPhone').editable({pk:@idInvoice, url: 'UpdateInvoice'  });
+        $('#BuyerAddress_ContactMail').editable({pk:@idInvoice, url: 'UpdateInvoice'  });*@
+
+
+    initEditableLine();
+
+
+
+    </script>
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+    @if (editable && !string.IsNullOrWhiteSpace(ViewBag.templatenamemvc))
+    {
+        string templatenamemvc = ViewBag.templatenamemvc;
+
+        <div class="row">
+            <div class="col-md-11">
+                <h3>Edition</h3>
+                <div class="portlet light bordered">
+                    <div class="portlet-body no-border">
+                        <div class=" invoice-body">
+                            @Html.Partial(templatenamemvc, invoice)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <i>Edition impossible</i>
+    }
+
+
+
+

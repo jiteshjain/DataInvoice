@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    DataInvoice.SOLUTIONS.INVOICES.CAMPAIGN.Campaign CampaignSearchForm = ViewBag.Campaign ?? new DataInvoice.SOLUTIONS.INVOICES.CAMPAIGN.Campaign();
+    List<DataInvoice.SOLUTIONS.GENERAL.ACCOUNT.Account> accounts = ViewBag.Accounts ?? new List<DataInvoice.SOLUTIONS.GENERAL.ACCOUNT.Account>();
+    int idaccount = ViewBag.idaccount;
+}
+
+
+
+<div class="portlet light">
+    <div class="portlet-title  tabbable-line">
+                <div class="caption">
+                    <span class="caption-subject bold font-blue uppercase"> @DataInvoice.Resources.Resources.listCampaign </span>
+                    <span class="caption-helper">.</span>
+                </div>
+
+
+                <div class="actions">
+                    <div class="btn-group">
+                        <a href="@Url.Action("Create", "Campaigns", new { })" class="btn btn-circle btn-default btn-sm">
+                            <i class="fa fa-plus"></i>@DataInvoice.Resources.Resources.addCampaign
+                        </a>
+                    </div>
+        </div>
+     </div>
+    <div class="portlet-body">
+
+                <table class="table no-more-tables table-hover">
+                    <thead>
+                        <tr>
+                            <th>@DataInvoice.Resources.Resources.title</th>                          
+                            <th style="width:20%">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (DataInvoice.SOLUTIONS.INVOICES.CAMPAIGN.Campaign campagne in Model)
+                            {
+                                <tr>
+                                    <td class="v-align-middle">@campagne.Title</td>
+                                    <td>
+                                       
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+
+                <br />
+                <br />
+
+            </div>
+        </div>

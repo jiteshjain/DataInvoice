@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "DefaultConfig";
+    Layout = "~/Views/Campaigns/_CampaignLayout.cshtml";
+    DataInvoice.SOLUTIONS.INVOICES.CAMPAIGN.Campaign Form = Model ?? new DataInvoice.SOLUTIONS.INVOICES.CAMPAIGN.Campaign();
+   
+}
+
+<div class="portlet light">
+    <div class="portlet-body">
+
+
+
+        <form method="post" action="">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="upper">Url Logo</label>
+                    <input class="form-control" name="DefaultLogoUrl" value="@Form.DefaultLogoUrl" type="url">
+                </div>
+                <address>
+                    <div class="form-group">
+                        <label class="upper">Adresse Seller</label>
+                        <input class="form-control" placeholder="Compagny" name="AddresseSellerDefault.Identity" value="@Form.AddresseSellerDefault.Identity" >
+                        <input class="form-control" placeholder="Adresse" style="margin-top:5px" name="AddresseSellerDefault.Adress1" value="@Form.AddresseSellerDefault.Adress1">
+                        <input class="form-control" placeholder="code postal" style="margin-top:5px" name="AddresseSellerDefault.Postcode" value="@Form.AddresseSellerDefault.Postcode">
+                        <input class="form-control" placeholder="City" style="margin-top:5px" name="AddresseSellerDefault.City" value="@Form.AddresseSellerDefault.City">
+                        <input class="form-control" placeholder="Phone" style="margin-top:5px" name="AddresseSellerDefault.ContactPhone" value="@Form.AddresseSellerDefault.ContactPhone">
+                        <input class="form-control" placeholder="Mail" style="margin-top:5px" name="AddresseSellerDefault.ContactMail" value="@Form.AddresseSellerDefault.ContactMail">
+                    </div>               
+                      </address>
+                <address>
+                    <div class="form-group">
+                        <label class="upper">Adresse Buyer</label>
+                        <input class="form-control" placeholder="Compagny" name="AddresseBuyerDefault.Identity" value="@Form.AddresseBuyerDefault.Identity">
+                        <input class="form-control" placeholder="Adresse" style="margin-top:5px" name="AddresseBuyerDefault.Adress1" value="@Form.AddresseBuyerDefault.Adress1">
+                        <input class="form-control" placeholder="code postal" style="margin-top:5px" name="AddresseBuyerDefault.Postcode" value="@Form.AddresseBuyerDefault.Postcode">
+                        <input class="form-control" placeholder="City" style="margin-top:5px" name="AddresseBuyerDefault.City" value="@Form.AddresseBuyerDefault.City">
+                        <input class="form-control" placeholder="Phone" style="margin-top:5px" name="AddresseBuyerDefault.ContactPhone" value="@Form.AddresseBuyerDefault.ContactPhone">
+                        <input class="form-control" placeholder="Mail" style="margin-top:5px" name="AddresseBuyerDefault.ContactMail" value="@Form.AddresseBuyerDefault.ContactMail">
+                    </div>
+                </address>
+
+            </div>
+            <input type="hidden" name="IDCampaign" value="@Form.IDCampaign" />
+            <br /><br />
+            <button class="btn btn-primary btn-block" type="submit">Valider</button>
+        </form>
+
+    </div>
+</div>
+

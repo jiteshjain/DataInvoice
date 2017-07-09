@@ -1,0 +1,139 @@
+﻿@{
+    Layout = null;
+
+    bool test = true;
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta charset="utf-8" />
+    <title>Gestion de facture en ligne | DataInvoice</title>
+    @if (test) {<meta name="robots" content="noindex">}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+    <link rel="apple-touch-icon" href="/Content/pages/ico/60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/Content/pages/ico/76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/Content/pages/ico/120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/Content/pages/ico/152.png">
+    <link rel="icon" type="image/x-icon" href="/Content/favicon.ico" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <link rel="alternate" href="https://www.datainvoice.com/fr" hreflang="fr" />
+
+
+
+    <!-- BEGIN PLUGINS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://static.datainvoice.com/plugins/swiper/css/swiper.css" rel="stylesheet" type="text/css" media="screen" />
+    <!-- END PLUGINS -->
+    <!-- BEGIN PAGES CSS -->
+    <link class="main-stylesheet" href="/Content/pages/css/pages.css" rel="stylesheet" type="text/css" />
+    <link class="main-stylesheet" href="/Content/pages/css/pages-icons.css" rel="stylesheet" type="text/css" />
+    <!-- BEGIN PAGES CSS -->
+
+    @RenderSection("head", false)
+    @RenderSection("headscripts", false)
+    
+
+
+</head>
+<body class="pace-dark">
+
+@Html.Partial("_Header")
+
+
+    <div class="page-wrappers">
+
+        @RenderBody()
+
+
+        @Html.Partial("_Footer")
+
+
+    </div>
+
+
+
+
+
+
+
+    <!-- START OVERLAY SEARCH -->
+    <div class="overlay hide" data-pages="search">
+        <!-- BEGIN Overlay Content !-->
+        <div class="overlay-content full-height has-results">
+            <!-- END Overlay Header !-->
+            <div class="container relative full-height">
+                <!-- BEGIN Overlay Header !-->
+                <div class="container-fluid">
+                    <!-- BEGIN Overlay Close !-->
+                    <a href="#" class="close-icon-light overlay-close text-black fs-16 top-right">
+                        <i class="pg-close_line"></i>
+                    </a>
+                    <!-- END Overlay Close !-->
+                </div>
+                <div class="container-fluid">
+                    <div class="inline-block bottom-right m-b-30">
+                        <div class="checkbox right">
+                            <input id="checkboxn" type="checkbox" value="1" checked="checked">
+                            <label for="checkboxn">Search within page</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-xs-height full-height">
+                    <div class="col-xs-height col-middle text-center">
+                        <!-- BEGIN Overlay Controls !-->
+                        <input id="overlay-search" class="no-border overlay-search bg-transparent col-sm-6 col-sm-offset-4" placeholder="Search..." autocomplete="off" spellcheck="false">
+                        <br>
+                        <div class="inline-block bottom-left m-l-10 m-b-30 hidden-xs">
+                            <p class="fs-14"><i class="fa fa-search m-r-10"></i> Press enter to search</p>
+                        </div>
+                        <!-- END Overlay Controls !-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Overlay Content !-->
+    </div>
+    <!-- END OVERLAY SEARCH -->
+
+    <!--  MODAL -->
+    <div class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" id="dialModalContent">
+                <!-- modal-content -->
+            </div>
+        </div>
+    </div>
+    <!-- END MODAL -->
+
+    <!-- BEGIN CORE FRAMEWORK -->
+    <script type="text/javascript" src="~/Content/pages/js/pages.image.loader.js"></script>
+    <script type="text/javascript" src="https://static.datainvoice.com/plugins/jquery/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="https://static.datainvoice.com/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- BEGIN SWIPER DEPENDENCIES -->
+    <script type="text/javascript" src="https://static.datainvoice.com/plugins/swiper/js/swiper.jquery.min.js"></script>
+    <script type="text/javascript" src="https://static.datainvoice.com/plugins/velocity/velocity.min.js"></script>
+    <script type="text/javascript" src="https://static.datainvoice.com/plugins/velocity/velocity.ui.js"></script>
+    <!-- BEGIN RETINA IMAGE LOADER -->
+    <script type="text/javascript" src="https://static.datainvoice.com/plugins/jquery-unveil/jquery.unveil.min.js"></script>
+    <!-- END VENDOR JS -->
+    <!-- BEGIN PAGES FRONTEND LIB -->
+    <script type="text/javascript" src="/Content/pages/js/pages.frontend.js"></script>
+    <!-- END PAGES LIB -->
+    <!-- BEGIN YOUR CUSTOM JS -->
+    <script type="text/javascript" src="/Content/assets/js/custom.js"></script>
+    <!-- END PAGES LIB -->
+
+    @RenderSection("scripts",false)
+    @RenderSection("footscripts", false)
+
+
+</html>

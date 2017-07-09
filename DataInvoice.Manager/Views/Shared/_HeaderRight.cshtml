@@ -1,0 +1,86 @@
+﻿@{
+    Layout = null;
+    DataInvoice.SOLUTIONS.GENERAL.IDENTITY.USER.Identity.ApplicationUser myuser = (DataInvoice.SOLUTIONS.GENERAL.IDENTITY.USER.Identity.ApplicationUser)this.Session["myuser"];
+
+
+    string Pseudo = "";
+    if (myuser != null) { Pseudo = myuser.Pseudo!=""?myuser.Pseudo:myuser.UserName; }
+    //@DataInvoice.Resources.Resources.myAccount
+    //Coprop.GENERAL.IDENTITY.USER.User myuser = (Coprop.GENERAL.IDENTITY.USER.User)this.Session["myuser"];
+}
+
+            <!-- BEGIN HEADER SEARCH BOX -->
+<!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
+<form class="search-form" action="@Url.Action("generalsearch","Main")" method="GET">
+    <div class="input-group">
+        <input type="text" class="form-control input-sm" placeholder="Search..." name="query">
+        <span class="input-group-btn">
+            <a href="javascript:;" class="btn submit">
+                <i class="fa fa-search"></i>
+            </a>
+        </span>
+    </div>
+</form>
+<!-- END HEADER SEARCH BOX -->
+<!-- BEGIN TOP NAVIGATION MENU -->
+<div class="top-menu">
+    <ul class="nav navbar-nav pull-right">
+        <li class="separator hide"> </li>
+
+
+
+
+        <!-- BEGIN LANGUAGE BAR -->
+        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+        <li class="dropdown dropdown-language">
+            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="false">
+                <!-- <img alt="" src="//static.datainvoice.com/img/flags/fr.png">-->
+                <span class="langname"> FR </span>
+                <i class="fa fa-angle-down"></i>
+            </a>
+            <ul class="dropdown-menu">
+
+                <li>
+                    <a href="@Url.Action("userculture", "Main", new { culturename="EN"})">
+                        <img alt="" src="//static.datainvoice.com/img/flags/us.png"> English EN/US
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("userculture", "Main", new { culturename="FR"})">
+                        <img alt="" src="//static.datainvoice.com/img/flags/fr.png"> French
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <!-- END LANGUAGE BAR -->
+        <!-- BEGIN USER LOGIN DROPDOWN -->
+        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+        <li class="dropdown dropdown-user dropdown-dark">
+            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                <span class="username username-hide-on-mobile"> @Pseudo </span>
+                <i class="fa-user fa"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-default">
+                <li>
+                    <a href="@Url.Action("AccountManager","Account")">
+                        <i class="fa-user fa"></i> My Profile
+                    </a>
+                </li>
+             
+
+
+                <li class="divider"> </li>
+
+                <li>
+                    <a href="@Url.Action("Signout", "Account")">
+                        <i class="fa-key fa"></i> Log Out
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <!-- END USER LOGIN DROPDOWN -->
+
+
+    </ul>
+</div>
+<!-- END TOP NAVIGATION MENU -->

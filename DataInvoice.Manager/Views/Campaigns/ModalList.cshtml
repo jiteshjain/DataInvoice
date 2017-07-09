@@ -1,0 +1,20 @@
+﻿
+@{
+    Layout = null;
+    List<DataInvoice.SOLUTIONS.INVOICES.CAMPAIGN.Campaign> result = Model;
+}
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title">Choisir la campagne</h4>
+</div>
+<div class="modal-body">
+    
+        @foreach (DataInvoice.SOLUTIONS.INVOICES.CAMPAIGN.Campaign cmp in result)
+        {
+        <div  class="row-details" style="margin-bottom:5px" > <a  href="@Url.Action("Invoice", "Invoices", new{idInvoice = -2, selectedidcampaign= @cmp.IDCampaign})" class="btn red-haze btn-sm">@cmp.Title </a></div>
+       
+        }
+       
+</div>
+
+

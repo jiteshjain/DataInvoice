@@ -1,0 +1,128 @@
+﻿@{
+    ViewBag.Title = "CreateEdit";
+    DataInvoice.SOLUTIONS.INVOICES.INVOICE.Invoice invoice = ViewBag.invoice;
+    int idInvoice = invoice.IDInvoice;
+    ViewBag.finalview = false;
+    bool editable = true;
+    string templatenamemvc = "InvoiceTemplate1";
+
+}
+
+@section headscripts
+{
+    <link href="//static.datainvoice.com/plugins/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" type="text/css" />
+}
+@section footscripts
+{
+    <script src="//static.datainvoice.com/plugins/bootstrap3-editable/js/bootstrap-editable.min.js" type="text/javascript"></script>
+
+
+
+    <script>
+    //$.fn.editable.defaults.mode = 'inline';
+
+    function   initEditableLine(){
+        $('.LineQuantity').editable({pk:@idInvoice,
+            //type:"number",
+            url:  'UpdateAjaxInvoice',
+            success: function (data) {
+                var UpdtIdline = data.LastUpdtline.IDLine;
+                var subIdprefix = "Lines_"+UpdtIdline+"_"; //LineTotalAmount
+                $('#'+subIdprefix+'LineTotalAmount').html(data.LastUpdtline.CurrencySymbol+" "+  data.LastUpdtline.TotalLineAmount); //
+                $('#SubTotal').html(data.CurrencySymbol+" "+data.SubTotal);
+                $('#TotalTax').html(data.CurrencySymbol+" "+data.TotalTax);
+                $('#TotalAmount').html(data.CurrencySymbol+" "+data.TotalAmount);
+            }
+        });
+
+
+        $('.LineLabel').editable({pk:@idInvoice, url: 'UpdateAjaxInvoice' });
+
+
+        $('.LineAmount').editable({
+            pk:@idInvoice,
+                //type:"number",
+                url:  'UpdateAjaxInvoice',
+                success: function (data) {
+                    var UpdtIdline = data.LastUpdtline.IDLine;
+                    var subIdprefix = "Lines_"+UpdtIdline+"_"; //LineTotalAmount
+                    $('#'+subIdprefix+'LineTotalAmount').html(data.LastUpdtline.CurrencySymbol+" "+  data.LastUpdtline.TotalLineAmount); // data.LastUpdtline.CurrencySymbol+" "+
+                    $('#SubTotal').html(data.CurrencySymbol+" "+data.SubTotal);
+                    $('#TotalTax').html(data.CurrencySymbol+" "+data.TotalTax);
+                    $('#TotalAmount').html(data.CurrencySymbol+" "+data.TotalAmount);
+                } });
+
+            $('.removeLine').click(function () {
+                var lineNo = $(this).attr('id');
+                $.ajax({ cache: false, async: true, type: 'POST', data: { idLine: lineNo}, url: 'DeleteLine',
+                    success: function (data) {
+                        var line = $("#line" + lineNo);
+                        line.remove();
+                        $('#Subtotal').html(data);
+                        $('#total').html(data);
+                    } });
+                return false;
+            });
+        }
+
+
+        $('#addLine').click(function () {
+            $.ajax({ cache: false, async: true, type: 'POST', data: { idInvoice: @idInvoice}, url: 'AddLine',
+            success: function (data) {
+                $('#lines').append('<tr id="line' + data + '">  <td ><a class="removeLine" id="' + data + '" href="#" style="color:red;"> <i class="fa fa-remove"></i></a></td> <td class="unseen text-center"><a href="#"  id="Lines|' + data + '_LineQuantity" class="LineQuantity">0</a>   </td> <td><a href="#"  id="Lines|' + data + '_LineLabel" class="LineLabel">Empty </a></td>  <td class="text-right">€ <a href="#"  id="Lines|' + data + '_LineAmount" class="LineAmount">0</a> </td> <td class="text-right" id="Lines_' + data +'_LineTotalAmount"> € 0  </td> </tr>');
+                initEditableLine();
+
+
+            } });
+        return false;
+    });
+
+
+        $('.editablefieldinvoice').editable({pk:@idInvoice, url: 'UpdateAjaxInvoice'  });
+
+    initEditableLine();
+
+
+
+    </script>
+
+
+
+
+
+}
+
+<div class="row">
+    <div class="col-md-offset-1 col-md-10">
+
+
+    <br /><br /><br /><br />
+
+    <h2>Création d'une facture</h2>
+
+
+    <br /><br />
+    <i>Pour modifier les champs vous devez cliquer directement dessus.</i>
+    </div>
+</div>
+
+    <br /><br />
+
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10" style="border: 1px dashed gray;">
+            <div class=" invoice-body" style="margin: 5px 5px 5px 5px;">
+                @Html.Partial(templatenamemvc, invoice)
+            </div>
+        </div>
+    </div>
+
+
+<br /><br />
+<div class="row">
+    <div class="col-md-offset-1 col-md-10">
+
+
+        <a class="btn btn-primary btn-block" href="@Url.Action("DownloadFile",new { notfilename=false})"><i class="fa fa-download"></i> Téléchargement du PDF</a>
+    </div>
+</div>
+<br /><br />

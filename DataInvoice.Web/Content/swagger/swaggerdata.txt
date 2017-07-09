@@ -1,0 +1,179 @@
+# this is an example of the Uber API
+# as a demonstration of an API spec in YAML
+swagger: '2.0'
+info:
+  title: DATAINVOICE API
+  version: "1.0.0"
+# the domain of the service
+host: api.datainvoice.com
+# array of all schemes that your API supports
+schemes:
+  - https
+  - http
+# will be prefixed to all paths
+basePath: /v1
+
+
+paths:
+
+
+# ------------------------ Accounts ------------------------   
+  /accounts/users/list:
+    get:
+      summary: list of users
+      tags:
+        - accounts
+      responses:
+        200:
+          description: response ok
+          
+  /accounts/get:
+    get:
+      summary: accountinfo
+      tags:
+        - accounts
+      responses:
+        200:
+          description: response ok
+          
+  /accounts/set:
+    post:
+      summary: accountinfo
+      tags:
+        - accounts
+      responses:
+        200:
+          description: response ok
+          
+          
+          
+# ------------------------ campaigns ------------------------ 
+  /campaigns/create:
+    post:
+      summary: Create campain
+      tags:
+        - campaigns
+      responses:
+        200:
+          description: response ok
+          
+  /campaigns/{IDCampaign}/get:
+    get:
+      summary: Create campain
+      parameters:
+        - name: IDCampaign
+          in: path
+          description: campaign id
+          required: true
+          type: string
+          format: string
+      tags:
+        - campaigns
+      responses:
+        200:
+          description: response ok
+          
+  /campaigns/{IDCampaign}/set:
+    post:
+      summary: set data campain
+      parameters:
+        - name: IDCampaign
+          in: path
+          description: campaign id
+          required: true
+          type: string
+          format: string
+      tags:
+        - campaigns
+      responses:
+        200:
+          description: response ok
+          
+          
+# ------------------------ invoices ------------------------ 
+  /invoices/search:
+    post:
+      summary: search campaing
+      tags:
+        - invoices
+      responses:
+        200:
+          description: response ok
+          
+  /invoices/create:
+    post:
+      summary: create new invoice
+      tags:
+        - invoices
+      responses:
+        200:
+          description: response ok
+          
+  /invoices/set:
+    post:
+      summary: update data of invoice
+      tags:
+        - invoices
+      responses:
+        200:
+          description: response ok
+          
+  /invoices/get:
+    get:
+      summary: get invoice data
+      tags:
+        - invoices
+      responses:
+        200:
+          description: response ok
+          
+  /invoices/download:
+    get:
+      summary: download invoice file
+      tags:
+        - invoices
+      responses:
+        200:
+          description: response ok
+          
+  /invoices/upload:
+    post:
+      summary: upload custom invoice file
+      tags:
+        - invoices
+      responses:
+        200:
+          description: response ok
+          
+          
+  /invoices/changestate:
+    post:
+      summary: change state of invoice (CANCEL,PREPARE,VALIDATE,END, ...)
+      tags:
+        - invoices
+      responses:
+        200:
+          description: response ok
+          
+        
+  /invoices/sendinvoice:
+    post:
+      summary: send invoice or reminder customer
+      tags:
+        - invoices
+      responses:
+        200:
+          description: response ok
+          
+          
+# ------------------------ documentmodels ------------------------ 
+  /documentmodels/list:
+    get:
+      summary: List of documentmodels for generator
+      tags:
+        - documentmodels
+      responses:
+        200:
+          description: response ok
+
+

@@ -1,0 +1,164 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Campaigns/_CampaignLayout.cshtml";
+    string path = ViewBag.path;
+}
+
+
+   
+
+
+
+
+<div class="portlet light">
+    <div class="portlet body">
+
+        <div class="row">
+
+
+
+            <div class="col-md-3">
+                <div class="grid simple" id="cloudstoreFilesList">
+                    <div class="grid-body no-border">
+                        <h4>
+                            Répertoires Copropriété
+                           @*@if (false && myuser.IsInRole("SYNDIC"))
+                                {   <i>&nbsp;&nbsp;</i><a href="@Url.Action("")" class="text-info normal-text"><i class="fa fa-plus"></i>Répertoire</a> }*@
+                            </h4>
+                            <br /><br />
+
+                            @foreach (string sc in ViewBag.paths)
+                            {
+                                string labelt = sc;
+                                if (sc == "/") { labelt = "Répertoire Principal"; }
+                                <ul class="@(sc == ViewBag.path ? "selected" : "")">
+                                    @if (sc == ViewBag.path)
+                                    {
+                                        <i class="fa fa-folder-open" aria-hidden="true"></i> }
+                                    else
+                                    {
+                                        <i class="fa fa-folder" aria-hidden="true"></i>}
+
+                                    @Html.ActionLink(labelt, "Index", new { path = @sc }, new { @class = (sc == ViewBag.path ? "selected" : "") })
+                                </ul>
+                            }
+
+                            <br /><br />
+
+                            <h4>Répertoires Généraux</h4>
+
+                            <br /><br />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+
+                    <div id="uploaddivgrid" class="grid simple " style="display:none;">
+                        <div class="grid-body no-border">
+                            <h4>Upload</h4>
+                            @using (Html.BeginForm("UploadFile", "CloudStore", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <input type="hidden" name="path" value="@path" />
+
+                                <div class="form-group">
+                                    <label class="upper" for="LabelFile">Ajouter un fichier dans le répertoire  "@ViewBag.path"</label>
+                                    <input class="form-control" type="file" name="FileUpload1" required>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary btn-block" type="submit">Envoyer le fichier</button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+
+
+                    @if (!string.IsNullOrEmpty(ViewBag.path))
+            {
+                        <div class="grid simple ">
+                            <div class="grid-body no-border">
+
+                                <h4>
+                                    Liste des documents
+                                    <i>&nbsp;&nbsp;</i><a onclick="showUpload();" class="btn btn-mini btn-xs btn-default normal-text"><i class="fa fa-plus"></i> Ajouter un document</a>
+                                </h4>
+                                <b>dans le répertoire "@ViewBag.path"</b><br /><br /><br />
+
+
+                                <div id="dZUpload" @*class="dropzone"*@>
+                                    @*<div class="dz-default dz-message"></div>*@
+
+                                    <table class="table no-more-tables">
+
+                                        <thead>
+                                            <tr>
+                                                <th style="width:9%">Nom du document</th>
+                                                <th style="width:22%">Information du document</th>
+                                                @*<th style="width:9%">Mise à jour</th>*@
+                                                <th style="width:10%">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @if (ViewBag.Files != null)
+                                            {
+                                                foreach (DataInvoice.SOLUTIONS.GENERAL.STORE.StoreCloudItem sci in ViewBag.Files)
+                                                {
+                                                    <tr>
+                                                        <td class="v-align-middle"> <i class="fa fa-file" aria-hidden="true"></i> @sci.NameFile</td>
+                                                        <td class="v-align-middle" style="font-size:xx-small;">@sci.LabelFile</td>
+                                                        <td>
+                                                            @*@Html.ActionLink("Editer", "EditerFichier",
+                                                                                                  new { idItem = @sci.IDItem },
+                                                                new { @class = "edit-detail" })*@
+
+                                                            <a class="btn btn-primary btn-xs btn-mini" href="@Url.Action("Download", "CloudStore", new { idItem = @sci.IDItem, path = path })" target="_blank" title="Télécharger"><i class="fa fa-cloud-download" aria-hidden="true"></i>&nbsp; Télécharger</a>
+
+                                                            <a class="btn btn-default btn-xs btn-mini edit-person" data-id="@sci.IDItem" href="#" title="Editer"><i class="fa fa-edit" aria-hidden="true"></i>&nbsp;</a>
+                                                            <a class="btn btn-defaul btn-xs btn-mini" href="@Url.Action("SupprimerFichier", "CloudStore", new { idItem = @sci.IDItem, path = path })" title="Supprimer"><i class="fa fa-remove" aria-hidden="true" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce fichier?');"></i>&nbsp;</a>
+
+                                                        </td>
+                                                    </tr>}
+                                            }
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <span style=" text-align:center;" onclick="showUpload();">
+                                    <i>Déplacer votre nouveau fichier ici pour l'ajouter </i>
+                                </span>
+
+                            </div>
+                        </div>
+
+
+
+
+                    }
+
+
+
+
+
+
+                </div>
+
+
+
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+            <div class="modal hide fade in" id="edit-person" style="top:200px;right:300px;left:300px;">
+                <div id="edit-person-container"></div>
+            </div>
+
+

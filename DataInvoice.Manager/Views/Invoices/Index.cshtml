@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+     DataInvoice.SOLUTIONS.INVOICES.INVOICE.FORM.InvoiceSearchForm InvoiceSearchForm = ViewBag.InvoiceSearchForm ?? new DataInvoice.SOLUTIONS.INVOICES.INVOICE.FORM.InvoiceSearchForm();
+    // List<DataInvoice.SOLUTIONS.INVOICES.CAMPAIGN.Campaign> campaigns = ViewBag.campaigns;
+}
+
+<div class="portlet light">
+    <div class="portlet-title">
+
+        <h4>@DataInvoice.Resources.Resources.search</h4>
+    </div>
+    <div class="portlet-body">
+        <div class="row">
+            <form method="post" action="@Url.Action("Index", "Invoice")">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="upper" for="Mail">@DataInvoice.Resources.Resources.reference</label>
+                        <input class="form-control" name="RefInvoice" id="RefInvoice" value="@InvoiceSearchForm.RefInvoice" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label class="upper">Type</label>
+                        <input class="form-control" name="InvoiceType" id="InvoiceType" value="@InvoiceSearchForm.InvoiceType" type="text">
+                    </div>
+                </div>
+
+                <input type="hidden" name="ActiveSearch" value="true" />
+
+                <br /><br />
+                <button class="btn btn-primary btn-block" type="submit">@DataInvoice.Resources.Resources.search</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="portlet light">
+    <div class="portlet-title">
+        <div class="caption">
+            <span class="caption-subject bold font-blue uppercase"> @DataInvoice.Resources.Resources.listInvoices </span>
+            <span class="caption-helper">.</span>
+        </div>
+
+        <div class="actions">
+            <div class="btn-group">
+                @*<a href="@Url.Action("Invoice", "Invoices", new { idInvoice = -2 })" class="btn btn-circle btn-primary btn-sm">
+                    <i class="fa fa-plus"></i> @DataInvoice.Resources.Resources.addInvoice 
+                </a>*@
+                <button type="button" class="btn btn-circle btn-primary btn-sm" onclick="doModal('@System.Web.VirtualPathUtility.ToAbsolute("~/Campaigns/ModalList")');">
+                    <i class="fa fa-plus"></i> @DataInvoice.Resources.Resources.addInvoice
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+
+   
+
+    <div class="portlet-body no-border">
+
+        <table class="table no-more-tables table-hover">
+            <thead>
+                <tr>
+                    <th style="">@DataInvoice.Resources.Resources.reference</th>
+                    <th style="">Identité</th>
+                    <th style="">Date facture</th>
+                    <th style="">@DataInvoice.Resources.Resources.amount</th>
+                    <th style="">Statut</th>
+                    <th style=""></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    foreach (DataInvoice.SOLUTIONS.INVOICES.INVOICE.Invoice invoice in Model)
+                    {
+                        string refinvoice = invoice.RefInvoice;
+                        if (string.IsNullOrWhiteSpace(refinvoice)) { refinvoice="<i style='color:gray; font-size:xx-small;'>Pas de référence ...</i>";}
+                        <tr>
+                            <td class="v-align-middle" title="TITRE : @invoice.InvoiceTitle">@Html.Raw(refinvoice)</td>
+                            <td class="v-align-middle" style="color:gray;">@(invoice.GetString("buyeridentity"))</td>
+                            <td class="v-align-middle">@(invoice.DateInvoice.HasValue?invoice.DateInvoice.Value.ToShortDateString():"")</td>
+                            <td class="v-align-middle">@invoice.FinalAmount <i style="color:gray;">€</i></td>
+                            <td class="v-align-middle">@DataInvoice.SOLUTIONS.INVOICES.INVOICE.HELPER.InvoiceHelpers.ShowInvoiceStateLabel(invoice)</td>
+                            <td>
+                                @DataInvoice.SOLUTIONS.INVOICES.INVOICE.HELPER.InvoiceBtnHelpers.ShowBtnOpen(this.Html,invoice)
+        
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+        <br />
+        <br />
+
+    </div>
+</div>

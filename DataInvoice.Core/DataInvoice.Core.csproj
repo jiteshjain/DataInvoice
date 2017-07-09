@@ -1,0 +1,479 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FA5DF34D-9183-4D3C-83E8-4780717672CD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataInvoice</RootNamespace>
+    <AssemblyName>DataInvoice.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="Arebis.Logging.GrayLog, Version=1.5.0.0, Culture=neutral, PublicKeyToken=e4fb5f0885c75cfc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Arebis.Logging.GrayLog.1.5.0.0\lib\net45\Arebis.Logging.GrayLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CsQuery, Version=1.3.3.249, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsQuery.1.3.4\lib\net40\CsQuery.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="en-html2enml, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\evernote-cloud-sdk-windows.1.0.8\lib\net40\en-html2enml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Evernote, Version=1.0.5377.16918, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\evernote-cloud-sdk-windows.1.0.8\lib\net40\Evernote.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EvernoteOAuthNet, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\evernote-cloud-sdk-windows.1.0.8\lib\net40\EvernoteOAuthNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EvernoteSDK, Version=1.0.12.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\evernote-cloud-sdk-windows.1.0.8\lib\net40\EvernoteSDK.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.AspNet.Identity, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.AspNet.Identity.2.1.1\lib\net45\MySql.AspNet.Identity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NGLib.COMPONENTS.DOCUMENT">
+      <HintPath>..\GLOBAL\NGLib.COMPONENTS.DOCUMENT.dll</HintPath>
+    </Reference>
+    <Reference Include="NGLib.Generics">
+      <HintPath>..\GLOBAL\NGLib.Generics.dll</HintPath>
+    </Reference>
+    <Reference Include="Nuegy.Lib">
+      <HintPath>..\GLOBAL\Nuegy.Lib.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.ArcGISOnline, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.ArcGISOnline.2.14.0\lib\net45\Owin.Security.Providers.ArcGISOnline.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Asana, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Asana.2.14.0\lib\net45\Owin.Security.Providers.Asana.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Backlog, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Backlog.2.14.0\lib\net45\Owin.Security.Providers.Backlog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Baidu, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Baidu.2.14.0\lib\net45\Owin.Security.Providers.Baidu.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.BattleNet, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.BattleNet.2.14.0\lib\net45\Owin.Security.Providers.BattleNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Bitbucket, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Bitbucket.2.14.0\lib\net45\Owin.Security.Providers.Bitbucket.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Box, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Box.2.14.0\lib\net45\Owin.Security.Providers.Box.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Buffer, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Buffer.2.14.0\lib\net45\Owin.Security.Providers.Buffer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Cosign, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Cosign.2.14.0\lib\net45\Owin.Security.Providers.Cosign.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.DeviantArt, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.DeviantArt.2.14.0\lib\net45\Owin.Security.Providers.DeviantArt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Discord, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Discord.2.14.0\lib\net45\Owin.Security.Providers.Discord.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.DoYouBuzz, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.DoYouBuzz.2.14.0\lib\net45\Owin.Security.Providers.DoYouBuzz.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Dropbox, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Dropbox.2.14.0\lib\net45\Owin.Security.Providers.Dropbox.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.EVEOnline, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.EVEOnline.2.14.0\lib\net45\Owin.Security.Providers.EVEOnline.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Evernote, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Evernote.2.14.0\lib\net45\Owin.Security.Providers.Evernote.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Fitbit, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Fitbit.2.14.0\lib\net45\Owin.Security.Providers.Fitbit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Flickr, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Flickr.2.14.0\lib\net45\Owin.Security.Providers.Flickr.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Foursquare, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Foursquare.2.14.0\lib\net45\Owin.Security.Providers.Foursquare.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Geni, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Geni.2.14.0\lib\net45\Owin.Security.Providers.Geni.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.GitHub, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.GitHub.2.14.0\lib\net45\Owin.Security.Providers.GitHub.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Gitter, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Gitter.2.14.0\lib\net45\Owin.Security.Providers.Gitter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.GooglePlus, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.GooglePlus.2.14.0\lib\net45\Owin.Security.Providers.GooglePlus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.HealthGraph, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.HealthGraph.2.14.0\lib\net45\Owin.Security.Providers.HealthGraph.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Imgur, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Imgur.2.14.0\lib\net45\Owin.Security.Providers.Imgur.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Instagram, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Instagram.2.14.0\lib\net45\Owin.Security.Providers.Instagram.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.LinkedIn, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.LinkedIn.2.14.0\lib\net45\Owin.Security.Providers.LinkedIn.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.MyHeritage, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.MyHeritage.2.14.0\lib\net45\Owin.Security.Providers.MyHeritage.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Onshape, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Onshape.2.14.0\lib\net45\Owin.Security.Providers.Onshape.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.OpenID, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.OpenID.2.14.0\lib\net45\Owin.Security.Providers.OpenID.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.OpenIDBase, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.OpenIDBase.2.1\lib\net45\Owin.Security.Providers.OpenIDBase.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Orcid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Orcid.2.14.0\lib\net45\Owin.Security.Providers.Orcid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.PayPal, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.PayPal.2.14.0\lib\net45\Owin.Security.Providers.PayPal.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Reddit, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Reddit.2.14.0\lib\net45\Owin.Security.Providers.Reddit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Salesforce, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Salesforce.2.14.0\lib\net45\Owin.Security.Providers.Salesforce.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Shopify, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Shopify.2.14.0\lib\net45\Owin.Security.Providers.Shopify.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Slack, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.SlackProvider.2.14.0\lib\net45\Owin.Security.Providers.Slack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.SoundCloud, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.SoundCloud.2.14.0\lib\net45\Owin.Security.Providers.SoundCloud.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Spotify, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Spotify.2.14.0\lib\net45\Owin.Security.Providers.Spotify.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.StackExchange, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.StackExchange.2.14.0\lib\net45\Owin.Security.Providers.StackExchange.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Steam, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Steam.2.14.0\lib\net45\Owin.Security.Providers.Steam.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.TripIt, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.TripIt.2.14.0\lib\net45\Owin.Security.Providers.TripIt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Twitch, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Twitch.2.14.0\lib\net45\Owin.Security.Providers.Twitch.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Untappd, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Untappd.2.14.0\lib\net45\Owin.Security.Providers.Untappd.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Vimeo, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Vimeo.2.14.0\lib\net45\Owin.Security.Providers.Vimeo.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.VisualStudio, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.VisualStudio.2.14.0\lib\net45\Owin.Security.Providers.VisualStudio.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.VKontakte, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.VKontakte.2.14.0\lib\net45\Owin.Security.Providers.VKontakte.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Wargaming, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Wargaming.2.14.0\lib\net45\Owin.Security.Providers.Wargaming.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.WordPress, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.WordPress.2.14.0\lib\net45\Owin.Security.Providers.WordPress.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OWin.Security.Providers.WSO2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.WSO2.2.14.0\lib\net45\OWin.Security.Providers.WSO2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Xing, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Xing.2.14.0\lib\net45\Owin.Security.Providers.Xing.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Yahoo, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Yahoo.2.14.0\lib\net45\Owin.Security.Providers.Yahoo.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin.Security.Providers.Yammer, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.Security.Providers.Yammer.2.14.0\lib\net45\Owin.Security.Providers.Yammer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PreMailer.Net, Version=1.2.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PreMailer.Net.1.2.7\lib\net40\PreMailer.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\GLOBAL\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SgmlReaderDll, Version=1.8.11.0, Culture=neutral, PublicKeyToken=46b2db9ca481831b, processorArchitecture=MSIL">
+      <HintPath>..\packages\SgmlReader.1.8.11\lib\4.0\SgmlReaderDll.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StackExchange.Redis, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.1.2.1\lib\net45\StackExchange.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="StackExchange.Redis.Extensions.Core, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.Extensions.Core.2.1.0\lib\net45\StackExchange.Redis.Extensions.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Thrift, Version=0.8.0.16918, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\evernote-cloud-sdk-windows.1.0.8\lib\net40\Thrift.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="COMPONENTS\WEB\MVC\DataInvoiceBaseMvcController.cs" />
+    <Compile Include="COMPONENTS\WEB\MVC\FORM\PageAlertMessageForm.cs" />
+    <Compile Include="COMPONENTS\WEB\MVC\MyAuthorize.cs" />
+    <Compile Include="COMPONENTS\WEB\MVC\PageInfoBootstrappHelpers.cs" />
+    <Compile Include="COMPONENTS\WEB\MVC\PageInfoManager.cs" />
+    <Compile Include="COMPONENTS\WEB\MVC\ViewTools.cs" />
+    <Compile Include="COMPONENTS\WEB\TEMPLATE\WEBARCH\MenuAdminHelper.cs" />
+    <Compile Include="COMPONENTS\WEB\TEMPLATE\WidgetsHelpers.cs" />
+    <Compile Include="Culture\CultureHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GLOBAL\DataInvoiceEnv.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\ACCES\CoreAcces.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\ACCOUNT\Account.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\ACCOUNT\AccountProvider.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\ACCOUNT\FORM\RegisterAccountForm.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\COMMUNICATION\ComminicationItem.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\COMMUNICATION\CommunicationConfig.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\COMMUNICATION\CommunicationProvider.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\GENERATOR\DocGenerator.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\GENERATOR\DocGeneratorProvider.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\SERVICE\EmailService.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\USER\Identity\Class1.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\USER\Identity\IdentityModels.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\USER\Identity\IdentityRole.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\USER\Identity\IdentityUser.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\USER\Identity\MySqlHelper.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\USER\Identity\MySqlRoleStore.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\USER\Identity\MySqlUserStore.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\USER\Identity\Repositories\Class1.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\USER\Identity\Repositories\RoleRepository.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\USER\Identity\Repositories\UserClaimRepository.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\USER\Identity\Repositories\UserLoginRepository.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\USER\Identity\Repositories\UserRepository.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\USER\Identity\Repositories\UserRoleRepository.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\USER\SHARED\IIdentityUserStore.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\USER\SHARED\IUser.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\USER\UserStore.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\USER\UserStoreManager.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\STORE\ENUMS.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\STORE\FORM\StoreCloudAdminForm.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\STORE\FORM\StoreCloudItemForm.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\STORE\FORM\StoreCloudSearchForm.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\STORE\StoreCloud.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\STORE\StoreCloudDirectory.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\STORE\StoreCloudItem.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\STORE\StoreCloudProvider.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\STORE\StoreCloudTools.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\COMMUNICATION\CAMPAIGN\CampaignInvoiceCustomizExtend.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\CONTACT\AddressProvider.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\CONTACT\AddressResults.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\CONTACT\ENUM.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\CONTACT\FORM\AddressForm.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\USER\ENUMS.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\USER\FORM\CreateUserForm.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\USER\FORM\UserMinimalPoco.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\USER\LocalUser.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\USER\UserBusiness.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\USER\UserProvider.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\USER\UserSession.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\IDENTITY\USER\UserTools.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\COMMUNICATION\CAMPAIGN\Campaign.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\COMMUNICATION\CAMPAIGN\CampaignProvider.cs" />
+    <Compile Include="SOLUTIONS\GENERAL\COMMUNICATION\CAMPAIGN\FORM\CampaignApiPoco.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\CONTACT\POCO\CompanyPoco.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\CONTACT\POCO\NamesPoco.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\CONTACT\POCO\ResultObjectPoco.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\DIRECTINVOICE\DirectInvoice.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\DIRECTINVOICE\DirectInvoiceProvider.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\DIRECTINVOICE\DirectInvoiceTools.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\DOCMODEL\DocModel.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\DOCMODEL\DocModelProvider.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\DOCMODEL\FORM\DocModelApiPoco.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\INVOICE\ENUM.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\INVOICE\FORM\InvoiceDataUpdtAjaxPoco.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\INVOICE\FORM\InvoiceDetailForm.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\INVOICE\FORM\InvoiceApiPoco.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\INVOICE\FORM\InvoiceCreateForm.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\INVOICE\FORM\InvoiceSearchForm.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\INVOICE\HELPER\InvoiceBtnHelpers.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\INVOICE\HELPER\InvoiceTimeLineHelpers.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\INVOICE\USE\UsePoco.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\INVOICE\HELPER\InvoiceHelpers.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\INVOICE\Invoice.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\CONTACT\Address.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\INVOICE\InvoiceData.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\INVOICE\InvoiceLine.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\INVOICE\InvoiceLineResults.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\INVOICE\InvoiceLog.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\INVOICE\InvoiceManager.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\INVOICE\InvoiceProvider.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\INVOICE\InvoiceResults.cs" />
+    <Compile Include="SOLUTIONS\INVOICES\INVOICE\InvoiceTools.cs" />
+    <Compile Include="SOLUTIONS\MANAGEMENT\ORGANIZEDREPOSITORY\ENUMS.cs" />
+    <Compile Include="SOLUTIONS\MANAGEMENT\ORGANIZEDREPOSITORY\OrganisedRepositoryResults.cs" />
+    <Compile Include="SOLUTIONS\MANAGEMENT\ORGANIZEDREPOSITORY\OrganizedRepositoryManager.cs" />
+    <Compile Include="SOLUTIONS\MANAGEMENT\ORGANIZEDREPOSITORY\OrganizedRepository.cs" />
+    <Compile Include="SOLUTIONS\MANAGEMENT\ORGANIZEDREPOSITORY\OrganizedRepositoryProvider.cs" />
+    <Compile Include="SOLUTIONS\PAY\TRANSACTION\ENUMS.cs" />
+    <Compile Include="SOLUTIONS\PAY\TRANSACTION\POCO\TransactionSearchForm.cs" />
+    <Compile Include="SOLUTIONS\PAY\TRANSACTION\Transaction.cs" />
+    <Compile Include="SOLUTIONS\PAY\TRANSACTION\TransactionLog.cs" />
+    <Compile Include="SOLUTIONS\PAY\TRANSACTION\TransactionLogResults.cs" />
+    <Compile Include="SOLUTIONS\PAY\TRANSACTION\TransactionManager.cs" />
+    <Compile Include="SOLUTIONS\PAY\TRANSACTION\TransactionProvider.cs" />
+    <Compile Include="SOLUTIONS\PAY\TRANSACTION\TransactionResults.cs" />
+    <Compile Include="SOLUTIONS\PAY\TRANSACTION\TransactionTools.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="COMPONENTS\DOCUMENT\" />
+    <Folder Include="COMPONENTS\FILE\LOCALFILER\" />
+    <Folder Include="EXCHANGES\" />
+    <Folder Include="SOLUTIONS\GENERAL\ACCOUNT\HELPER\" />
+    <Folder Include="SOLUTIONS\GENERAL\COMMUNICATION\CAMPAIGN\HELPER\" />
+    <Folder Include="SOLUTIONS\INVOICES\ADDRESS\FORM\" />
+    <Folder Include="SOLUTIONS\INVOICES\CONTACT\HELPER\" />
+    <Folder Include="SOLUTIONS\INVOICES\DOCMODEL\GENERATOR\" />
+    <Folder Include="SOLUTIONS\INVOICES\DOCMODEL\HELPER\" />
+    <Folder Include="SOLUTIONS\MANAGEMENT\ORGANIZEDREPOSITORY\FORM\" />
+    <Folder Include="SOLUTIONS\MANAGEMENT\ORGANIZEDREPOSITORY\HELPERS\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

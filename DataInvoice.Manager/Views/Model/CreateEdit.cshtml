@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "CreateEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    DataInvoice.SOLUTIONS.INVOICES.DOCMODEL.DocModel Form = Model ?? new DataInvoice.SOLUTIONS.INVOICES.DOCMODEL.DocModel();
+    List<DataInvoice.SOLUTIONS.GENERAL.ACCOUNT.Account> accounts = ViewBag.Accounts ?? new List<DataInvoice.SOLUTIONS.GENERAL.ACCOUNT.Account>();
+    List<DataInvoice.SOLUTIONS.INVOICES.CAMPAIGN.Campaign> campaigns = ViewBag.campaigns ?? new List<DataInvoice.SOLUTIONS.INVOICES.CAMPAIGN.Campaign>();
+}
+
+<div class="grid-body no-border">
+    <div class="row">
+        <form method="post" action="@Url.Action("ValidateCreateEdit", "Model")">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="upper">@DataInvoice.Resources.Resources.title</label>
+                    <input class="form-control" name="Title" value="@Form.Title" type="text">
+                </div>
+                <div class="form-group">
+                    <label class="upper" for="Mail">@DataInvoice.Resources.Resources.account</label>
+                    <select class="form-control" name="IDAccount">
+                        @foreach (DataInvoice.SOLUTIONS.GENERAL.ACCOUNT.Account account in accounts)
+                        {
+                            <option value="@account.IDAccount" @(Form.IDAccount == account.IDAccount ? "selected='selected'" : "")> @account.AccountName </option>}
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="upper" for="IDCampaign">@DataInvoice.Resources.Resources.campaign</label>
+                    <select class="form-control" name="IDCampaign">
+                        @foreach (DataInvoice.SOLUTIONS.INVOICES.CAMPAIGN.Campaign campaign in campaigns)
+                        {
+                            <option value="@campaign.IDCampaign" @(Form.IDCampaign == campaign.IDCampaign ? "selected='selected'" : "")> @campaign.Title </option>}
+
+                    </select>
+
+                </div>
+
+
+            </div>
+            <input type="hidden" name="IDModel" value="@Form.IDModel" />
+
+            <br /><br />
+            <button class="btn btn-primary btn-block" type="submit">@DataInvoice.Resources.Resources.validate</button>
+        </form>
+    </div>
+</div>
+
+
